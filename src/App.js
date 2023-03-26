@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import News from "./components/News";
 
 function App() {
   const ipToken = 'a532296877f3d8'
@@ -27,6 +28,8 @@ function App() {
   return (
     <div className="App">
       App
+      <News />
+
     </div>
   );
 }
