@@ -1,35 +1,25 @@
-import { useEffect, useState } from "react";
-import News from "./components/News";
+import { Routes, Route } from "react-router-dom";
+//Components
+import Footer from "./components/Footer";
+import Heading from "./components/Heading";
+import Nav from "./components/Nav";
+//Routes
+import Main from "./pages/Main";
+import NewsDetail from './pages/NewsDetail'
+//Style
+import './assets/scss/main.scss';
 
 function App() {
-  const ipToken = 'a532296877f3d8'
-  const accuWeatherToken = 'slIlACVHV0hMvoQA15SWVvGjN2B2yCEy'
-
-  const [forecastData, setForecastData] = useState([])
-
-  useEffect(() => {
-    const handleIpRequest = async () => {
-      const ipRequest = await fetch(`https://ipinfo.io/json?token=${ipToken}`)
-      const jsonIpResponse = await ipRequest.json()
-      const queryCoord = jsonIpResponse.loc
-
-      const locationKeyRequest = await fetch(`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${accuWeatherToken}&q=${queryCoord}`)
-      const jsonKeyResponse = await locationKeyRequest.json()
-      const key = jsonKeyResponse.Key
-
-      const forecastRequest = await fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/1day/${key}?apikey=${accuWeatherToken}`)
-      const jsonForecastRes = await forecastRequest.json()
-      setForecastData(jsonForecastRes.DailyForecasts[0])
-
-    }
-    handleIpRequest()
-  }, [])
 
   return (
-    <div className="App">
-      App
-      <News />
-
+    <div className="app">
+      <Heading />
+      <Nav />
+      <Routes>
+        <Route path='/' element={ <Main />} />
+        <Route path='/news/:category/:id' element={ <NewsDetail />} />
+      </Routes>
+      <Footer />
     </div>
   );
 }
