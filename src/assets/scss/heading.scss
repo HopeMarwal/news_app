@@ -1,0 +1,51 @@
+@import './var';
+
+header {
+  width: 100%;
+  background-color: $gray-bg-2;
+  padding: 20px 10px 10px 10px;
+  span {
+    display: inline-block;
+  }
+}
+.header_content {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  margin-right: auto;
+  color: $main-clr;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 2rem;
+
+  span {
+    color: #000;
+  }
+}
+.widget {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  justify-content: space-between;
+  font-family: $font-category;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  color: $second-clr;
+  cursor: pointer;
+  .currency_symbol {
+    opacity: 0.75;
+  }
+  img {
+    max-width: 25px;
+  }
+}
