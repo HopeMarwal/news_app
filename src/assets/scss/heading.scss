@@ -7,6 +7,9 @@ header {
   span {
     display: inline-block;
   }
+  @include respond-to('x-small') {
+    padding: 10px;
+  }
 }
 .header_content {
   max-width: 1200px;
@@ -16,6 +19,9 @@ header {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  @include respond-to('x-small') {
+    gap: 5px;
+  }
 }
 .logo {
   margin-right: auto;
@@ -23,9 +29,11 @@ header {
   text-transform: uppercase;
   font-weight: bold;
   font-size: 2rem;
-
   span {
     color: #000;
+  }
+  @include respond-to('x-small') {
+    font-size: 1rem;
   }
 }
 .widget {
@@ -44,11 +52,22 @@ header {
   cursor: pointer;
   .city {
     font-size: 13px;
+    @include respond-to('x-small') {
+      display: none;
+    }
   }
   .currency_symbol {
     opacity: 0.75;
   }
   img {
     max-width: 25px;
+    @include respond-to('x-small') {
+     max-width: 20px;
+    }
+  }
+  @include respond-to('x-small') {
+   font-size: 12px;
   }
 }
+
+

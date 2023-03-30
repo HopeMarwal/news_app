@@ -7,3 +7,23 @@ $font-heading: 'Rubik', sans-serif;
 $font-category: 'Bellota Text', cursive;
 $main-clr: #CA0000;
 $second-clr: #828282;
+
+
+$breakpoints: (
+  'x-small': 560px,
+  'small':  767px,
+  'medium': 992px,
+  'large':  1200px
+) !default;
+
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (max-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Available breakpoints are: #{map-keys($breakpoints)}.";
+  }
+}

@@ -10,6 +10,9 @@ import { Link } from 'react-router-dom';
 //Axios
 import { currencyOptions } from '../utils/fetchData';
 
+//TODO:
+//Currency link
+
 export default function Heading() {
   const ipToken = 'a532296877f3d8'
   const accuWeatherToken = 'slIlACVHV0hMvoQA15SWVvGjN2B2yCEy'
@@ -85,10 +88,8 @@ export default function Heading() {
 
         <Link className='widget currency'>
           <img src={GB} alt='GB_flag' />
-          <span className='currency_symbol'>£</span>
-          <span className='value'> = {currencyData?.USD.toFixed(2)}</span>
+          <span>1 GBP = {currencyData?.USD.toFixed(2)} USD</span>
           <img src={US} alt='US_flag' />
-          <span className='currency_symbol'>$</span>
         </Link>
 
         <Link to={weatherLink} target='_blank'  className='widget weather'>
