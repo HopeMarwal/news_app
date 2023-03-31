@@ -50,6 +50,16 @@ header {
   font-size: 20px;
   color: $second-clr;
   cursor: pointer;
+  &.currency {
+    @include respond-to('x-small') {
+      display: none;
+    }
+  }
+  &.weather {
+    @include respond-to('x-small') {
+      margin-right: 50px;
+    }
+  }
   .city {
     font-size: 13px;
     @include respond-to('x-small') {
