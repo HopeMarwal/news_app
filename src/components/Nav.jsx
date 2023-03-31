@@ -24,26 +24,42 @@ export default function Nav() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const handleCloseMenu = () => {
+    setIsMoreOpen(false)
+    setIsMenuOpen(false)
+  }
+
   const itemsToMap = windowWidth > 560 ? topics.slice(0, 5) : topics
 
   return (
     <nav>
-      {
-        windowWidth < 560 && 
+      {/* Burger menu btn */}
+      { windowWidth < 560 && 
         <button
           onClick={() => {setIsMenuOpen(!isMenuOpen)}}
           className='btn_burger'
-          >
-            { isMenuOpen ? <AiOutlineClose /> : <RxHamburgerMenu /> }
-          </button>
+        >
+          { isMenuOpen ? <AiOutlineClose /> : <RxHamburgerMenu /> }
+        </button>
       }
+      
+      {/* MENU */}
       <div className={`nav_menu ${isMenuOpen && 'show'}`}>
-        <NavLink to='./' className={ windowWidth < 560 && 'expand'}>Home</NavLink>
+        {/* Home link */}
+        <NavLink 
+          to='./' 
+          className={ windowWidth < 560 && 'expand'}
+          onClick={handleCloseMenu}
+        >
+          Home
+        </NavLink>
+
+        {/* Nav links */}
         {
           itemsToMap.map((item) => (
             <NavLink 
               to={{ pathname: `./${item}` }} 
-              onClick={() => setIsMoreOpen(false)} 
+              onClick={handleCloseMenu} 
               key={item}
               className={ windowWidth < 560 && 'expand'}
             >
@@ -51,6 +67,8 @@ export default function Nav() {
             </NavLink>
           ))
         }
+       
+        {/* Expand btn */}
         { windowWidth > 560 && 
         <button 
           className='btn_nav'
@@ -59,6 +77,7 @@ export default function Nav() {
           More <VscChevronDown className={isMoreOpen ? 'open' : 'close'}/>
         </button>}
 
+         {/* Large screen nav links */}
         { windowWidth > 560 && 
         <div className={`nav_menu_more ${isMoreOpen ? 'show' : ''}`}>
           {

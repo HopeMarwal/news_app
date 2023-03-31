@@ -1,0 +1,22 @@
+@import './var';
+
+.large_banner {
+  max-width: 1200px;
+  margin: auto;
+  padding: 10px;
+  h3 {
+    font-family: $font-heading;
+    font-size: 32px;
+    font-weight: 700;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+  }
+  &-body {
+    display: flex;
+    padding: 6px;
+    background-color: #fff;
+    img {
+      width: 50%;
+    }
+  }
+}
