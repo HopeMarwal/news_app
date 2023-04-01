@@ -31,6 +31,7 @@ header {
   font-size: 2rem;
   span {
     color: #000;
+    font-size: 2rem;
   }
   @include respond-to('x-small') {
     font-size: 1rem;

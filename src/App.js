@@ -19,7 +19,7 @@ function App() {
       <Routes>
         <Route path='/' element={ <Main />} />
         <Route path='/:category' element={ <NewsCategory  /> } />
-        <Route path='/news/:category/:id' element={ <NewsDetail />} />
+        <Route path='/:category/:id' element={ <NewsDetail />} />
       </Routes>
       <Footer />
     </div>

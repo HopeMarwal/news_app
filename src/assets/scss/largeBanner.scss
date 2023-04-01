@@ -3,7 +3,6 @@
 .large_banner {
   max-width: 1200px;
   margin: auto;
-  padding: 10px;
   h3 {
     font-family: $font-heading;
     font-size: 32px;
@@ -15,8 +14,26 @@
     display: flex;
     padding: 6px;
     background-color: #fff;
-    img {
-      width: 50%;
+  }
+  img {
+    width: 50%;
+  }
+  .large_banner-body-info {
+    padding: 10px 10px 10px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: rgb(255, 255, 92);
+    p {
+      font-size: 2rem;
     }
+  }
+  .news_category {
+    background-color: #000;
+    padding: 5px 10px;
+    font-family: $font-category;
+    font-size: 0.9rem;
+    color: $gray-bg-1;
+    width: fit-content;
   }
 }
