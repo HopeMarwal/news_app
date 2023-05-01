@@ -3,4 +3,29 @@
 .app {
   background-color: $gray-bg-1;
   font-family: $font-main;
+  h3 {
+    font-family: $font-heading;
+    font-size: 32px;
+    font-weight: 700;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+  }
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $main-clr;
+    background-color: #fff;
+    border: 1px solid $main-clr;
+    border-radius: 5px;
+    height: 50px;
+    width: 200px;
+    margin: auto;
+    font-weight: bold;
+    transition: all 0.5s linear;
+    &:hover {
+      transform: scale(1.001);
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+  }
 }

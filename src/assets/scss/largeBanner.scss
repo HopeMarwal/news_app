@@ -3,13 +3,6 @@
 .large_banner {
   max-width: 1200px;
   margin: auto;
-  h3 {
-    font-family: $font-heading;
-    font-size: 32px;
-    font-weight: 700;
-    text-transform: capitalize;
-    margin-bottom: 20px;
-  }
   &-body {
     display: flex;
     padding: 6px;

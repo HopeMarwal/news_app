@@ -13,8 +13,8 @@ import { currencyOptions } from '../utils/fetchData';
 //TODO:
 //Currency link
 
-export default function Heading() {
-  const ipToken = 'a532296877f3d8'
+export default function Heading({ city, location}) {
+
   const accuWeatherToken = 'slIlACVHV0hMvoQA15SWVvGjN2B2yCEy'
 
   const [forecastData, setForecastData] = useState({})
@@ -24,14 +24,14 @@ export default function Heading() {
 
   useEffect(() => {
     const handleWeatherRequest = async () => {
-      //Request API coord
-      const ipRequest = await fetch(`https://ipinfo.io/json?token=${ipToken}`)
-      const jsonIpResponse = await ipRequest.json()
-      const queryCoord = jsonIpResponse.loc
-      const city = jsonIpResponse.city
+      // //Request API coord
+      // const ipRequest = await fetch(`https://ipinfo.io/json?token=${ipToken}`)
+      // const jsonIpResponse = await ipRequest.json()
+      // const queryCoord = jsonIpResponse.loc
+      // const city = jsonIpResponse.city
 
       //Request location
-      const locationKeyRequest = await fetch(`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${accuWeatherToken}&q=${queryCoord}`)
+      const locationKeyRequest = await fetch(`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${accuWeatherToken}&q=${location}`)
       const jsonKeyResponse = await locationKeyRequest.json()
       const key = jsonKeyResponse.Key
       

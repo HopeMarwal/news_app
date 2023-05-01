@@ -1,10 +1,10 @@
 export const newsOptions = {
   method: 'GET',
-  url: 'https://api.newscatcherapi.com/v2/latest_headlines',
-  params: { lang: 'en', when: '24h', page: 1, page_size: 7 },
-  headers: {
-    'x-api-key' : process.env.REACT_APP_API_KEY,
-  }
+  url: 'https://content.guardianapis.com/search',
+  params: {
+    'api-key' : 'b6a0e96e-4e49-4842-ba4c-eec982ffb9cb',
+    'show-fields': 'thumbnail,bodyText'
+  },
 }
 
 export const currencyOptions = {
