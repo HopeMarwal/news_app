@@ -8,10 +8,13 @@ import { NavLink} from 'react-router-dom';
 import { VscChevronDown } from 'react-icons/vsc';
 import { RxHamburgerMenu } from 'react-icons/rx'
 import { AiOutlineClose } from 'react-icons/ai'
+//Context
+import { useNews } from '../context/NewsContext';
 
-const topics = ['world', 'politics', 'finance', 'science', 'business', 'travel', 'tech', 'economics', 'entertainment', 'beauty', 'food', 'gaming', 'energy']
+const topics = ['world', 'politics', 'science', 'business', 'travel', 'technology', 'uk-news', 'education', 'money', 'music', 'sport', 'fashion', 'society', 'weather', 'food', 'games', 'environment']
 
 export default function Nav() {
+  const { setCategory } = useNews()
   const [isMoreOpen, setIsMoreOpen] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -24,9 +27,15 @@ export default function Nav() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const handleCloseMenu = () => {
+  const handleCloseMenu = (item) => {
+    setCategory(item)
     setIsMoreOpen(false)
     setIsMenuOpen(false)
+  }
+
+  const handleCloseMoreMenu = (item) => {
+    setCategory(item)
+    setIsMoreOpen(false)
   }
 
   const itemsToMap = windowWidth > 560 ? topics.slice(0, 5) : topics
@@ -49,7 +58,7 @@ export default function Nav() {
         <NavLink 
           to='./' 
           className={ windowWidth < 560 && 'expand'}
-          onClick={handleCloseMenu}
+          onClick={() => handleCloseMenu('all')}
         >
           Home
         </NavLink>
@@ -59,7 +68,7 @@ export default function Nav() {
           itemsToMap.map((item) => (
             <NavLink 
               to={{ pathname: `./${item}` }} 
-              onClick={handleCloseMenu} 
+              onClick={() => handleCloseMenu(item)} 
               key={item}
               className={ windowWidth < 560 && 'expand'}
             >
@@ -81,10 +90,10 @@ export default function Nav() {
         { windowWidth > 560 && 
         <div className={`nav_menu_more ${isMoreOpen ? 'show' : ''}`}>
           {
-            topics.slice(5, 13).map((item) => (
+            topics.slice(5,).map((item) => (
               <NavLink 
                 to={{ pathname: `./${item}` }}
-                onClick={() => setIsMoreOpen(false)}
+                onClick={() => handleCloseMoreMenu(item)}
                 key={item}
                 className='expand'
               >
