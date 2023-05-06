@@ -17,13 +17,13 @@ export default function Main() {
     fetchNews('all')
     fetchUkNews()
     fetchSportNews()
-    fetchLatestNews()
   }, [])
 
   // Fetch all news
-  const fetchNews = async (query) => {
-    axios.request({...newsOptions, params: {...newsOptions.params, q: query}}).then(function (response) {
-      setDataNews(response.data.response.results)
+  const fetchNews = async () => {
+    axios.request({...newsOptions, params: {...newsOptions.params, 'page-size': 20}}).then(function (response) {
+      setDataNews(response.data.response.results.slice(0,10))
+      setLatestNews(response.data.response.results.slice(10,))
     }).catch(function (error) {
       console.error(error);
     });
@@ -47,14 +47,6 @@ export default function Main() {
       });
     }
 
-    // Fetch latest news
-    const fetchLatestNews = async () => {
-      axios.request(newsOptions).then(function (response) {
-        setLatestNews(response.data.response.results)
-      }).catch(function (error) {
-        console.error(error);
-      });
-    }
 
   return (
     <div className='main-page'>

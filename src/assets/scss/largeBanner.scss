@@ -7,6 +7,13 @@
     display: flex;
     padding: 6px;
     background-color: #fff;
+    transition: all 0.3s linear;
+    &:hover {
+      transform: scale(1.01);
+      p {
+        color: $main-clr;
+      }
+    }
   }
   img {
     width: 50%;
@@ -17,7 +24,9 @@
     flex-direction: column;
     justify-content: space-evenly;
     background-color: rgb(255, 255, 92);
+    transition: all 0.3s linear;
     p {
+      transition: all 0.3s linear;
       font-size: 2rem;
     }
   }

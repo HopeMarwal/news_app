@@ -1,5 +1,58 @@
 @import './var';
 
-footer {
-
+.footer_wrapper {
+  background-color: $gray-bg-2;
+  footer {
+    max-width: 1200px;
+    margin: auto;
+    padding: 10px;
+  }
+  .social_media {
+    display: flex;
+    gap: 25px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 10px 0 30px 0;
+    a {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .icon {
+      font-size: 1.4em;
+      &.tw {
+        color: #1DA1F2;
+      }
+      &.fb {
+        color: #4267B2
+      }
+      &.ytb {
+        color: #FF0000;
+      }
+    }
+    
+    span {
+      font-size: 1.2rem;
+    }
+  }
+  .footer_menu {
+    display: flex;
+    gap: 30px;
+    padding: 20px 0;
+    p {
+      font-size: 1.2rem;
+    }
+    
+  }
+  .copyright {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    .logo {
+      margin-right: 0;
+    }
+    > span {
+      font-family: $font-category;
+      color: $second-clr;
+    }
+  }
 }

@@ -13,7 +13,7 @@ export default function NewsCard({ data }) {
         
         <div className="news-card_info">
           <p className='category'>{data.sectionName}</p>
-          <p className='title'>{data.webTitle}</p>
+          <p className='title'>{data.webTitle.slice(0,80)}...</p>
         </div>
       </div>
     </Link>
