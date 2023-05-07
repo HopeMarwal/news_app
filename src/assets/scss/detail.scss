@@ -1,0 +1,136 @@
+@import './var';
+
+.news_detail {
+  max-width: 750px;
+  margin: auto;
+  padding: 30px 10px;
+
+  .section_name {
+    font-family: $font-category;
+    background: $second-clr;
+    width: fit-content;
+    padding: 0 5px;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    &:hover, &:active {
+      text-decoration: underline;
+    }
+  }
+  h1 {
+    color: #fff;
+    font-family: $font-heading;
+    width: 95%;
+    span {
+      background: #000;
+      font-size: 2rem;
+      padding: 0 4px 4px 0;
+      white-space: pre-wrap;
+      box-decoration-break: clone; 
+      &::selection {
+        background: $main-clr-selection;
+        color: #121212;
+      }
+    }
+  }
+  a {
+    color: $main-clr;
+    font-size: 1.1rem;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  ul {
+    padding-left: 25px;
+    font-family: $font-heading;
+    font-weight: 300;
+  }
+  .byline {
+    width: fit-content;
+    background: $main-clr-selection;
+    padding: 3px;
+    font-size: 1.1rem;
+  }
+  .publish_time {
+    font-family: $font-heading;
+    font-weight: bolder;
+    color: $second-clr;
+  }
+  .standfirst {
+    font-weight: bold;
+    margin: 30px 0;
+    p {
+      font-size: 1.2rem;
+    }
+  }
+  .body {
+    iframe {
+      border: none;
+      outline: none;
+      width: 100%;
+      height: 500px;
+    }
+    aside {
+      max-width: 200px;
+      padding: 10px;
+      background-color: #fff;
+      font-family: $font-heading;
+      float: left;
+      clear: left;
+      margin-right: 5px;
+      p {
+        margin-bottom: 0 !important;
+      }
+    }
+    p {
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+      &::selection {
+        background: $main-clr-selection;
+        color: #121212;
+      }
+    }
+    li > p {
+      font-size: 16px;
+    }
+    .element-image {
+      margin-bottom: 20px;
+    }
+    .element-image__caption {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      width: calc(100% - 23px);
+      gap: 3px;
+      &::before {
+        content: '';
+        display: inline-block;
+        background: url('../img/camera.svg') no-repeat;
+        width: 20px;
+        height: 20px;
+      }
+    }
+    img {
+      width: 100% !important;
+      object-fit: cover;
+    }
+    figcaption {
+      color: $second-clr;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 5px;
+    }
+    .block {
+      background: #fff;
+      padding: 10px 40px;
+      border-top: 1px solid $main-clr;
+      border-bottom: 1px solid $gray-border;
+      margin-bottom: 20px;
+      &-time {
+        color: $second-clr;
+        font-family: $font-category;
+      }
+    }
+  }
+}

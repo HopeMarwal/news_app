@@ -1,9 +1,13 @@
-import '../assets/scss/largeBanner.scss'
+import '../assets/scss/largeBanner.scss';
+//Router
+import { Link } from 'react-router-dom';
 
 export default function LargeBanner({ data, heading }) {
 
+  const id = data.id.replaceAll('/', '_')
+
   return (
-    <div className='large_banner'>
+    <Link to={`/${data.sectionId}/${id}`} className='large_banner'>
       <h3>{heading}</h3>
       <div className='large_banner-body'>
         <img src={data?.fields.thumbnail} />
@@ -16,6 +20,6 @@ export default function LargeBanner({ data, heading }) {
         </div>
 
       </div>
-    </div>
+    </Link>
   )
 }

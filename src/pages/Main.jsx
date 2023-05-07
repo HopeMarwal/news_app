@@ -49,7 +49,7 @@ export default function Main() {
       {/* 8 latest News */}
       <h3 style={{width: '100%'}}>Latest news</h3>
       <div className="container latest">
-        {dataNews.length > 0 &&
+        {dataNews &&
           dataNews.slice(10, 20).map((item, index) => (
             <Link to={`/${item.sectionId}/${item.id.replaceAll('/', '_')}`} key={item.id}>
               <div className='container_item'>

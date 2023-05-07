@@ -11,6 +11,7 @@ export const NewsProvider = ({ children }) => {
   const [bannerNews, setBannerNews] = useState(null)
   const [sportNews, setSportNews] = useState(null)
 
+  //Handle Fetch News
   useEffect(() => {
     if(category === 'all') {
       fetchTestNews(31)
@@ -22,8 +23,10 @@ export const NewsProvider = ({ children }) => {
 
   }, [category])
 
+
+  //Fetch data func
   const fetchTestNews = async (pageSize, section) => {
-    axios.request({...newsOptions, params: {...newsOptions.params, 'page-size': pageSize, section: section}}).then(function (response) {
+    await axios.request({...newsOptions, params: {...newsOptions.params, 'page-size': pageSize, section: section}}).then(function (response) {
       if(pageSize === 3) {
         setSportNews(response.data.response.results)
       } else if(pageSize === 2) {
@@ -37,7 +40,7 @@ export const NewsProvider = ({ children }) => {
   }
 
   return (
-    <NewsContext.Provider value={{category, setCategory, dataNews, bannerNews, sportNews}}>
+    <NewsContext.Provider value={{ category, setCategory, dataNews, bannerNews, sportNews}}>
       {children}
     </NewsContext.Provider>
   )

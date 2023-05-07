@@ -3,7 +3,7 @@ export const newsOptions = {
   url: 'https://content.guardianapis.com/search',
   params: {
     'api-key' : 'b6a0e96e-4e49-4842-ba4c-eec982ffb9cb',
-    'show-fields': 'thumbnail,bodyText'
+    'show-fields': 'thumbnail'
   },
 }
 
