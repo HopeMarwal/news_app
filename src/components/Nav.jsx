@@ -38,12 +38,12 @@ export default function Nav() {
     setIsMoreOpen(false)
   }
 
-  const itemsToMap = windowWidth > 560 ? topics.slice(0, 5) : topics
+  const itemsToMap = windowWidth > 550 ? topics.slice(0, 5) : topics
 
   return (
     <nav>
       {/* Burger menu btn */}
-      { windowWidth < 560 && 
+      { windowWidth < 550 && 
         <button
           onClick={() => {setIsMenuOpen(!isMenuOpen)}}
           className='btn_burger'
@@ -57,7 +57,7 @@ export default function Nav() {
         {/* Home link */}
         <NavLink 
           to='./' 
-          className={ windowWidth < 560 && 'expand'}
+          className={ windowWidth < 550 && 'expand'}
           onClick={() => handleCloseMenu('all')}
         >
           Home
@@ -70,7 +70,7 @@ export default function Nav() {
               to={{ pathname: `./${item}` }} 
               onClick={() => handleCloseMenu(item)} 
               key={item}
-              className={ windowWidth < 560 && 'expand'}
+              className={ windowWidth < 550 && 'expand'}
             >
               {item}
             </NavLink>
@@ -78,7 +78,7 @@ export default function Nav() {
         }
        
         {/* Expand btn */}
-        { windowWidth > 560 && 
+        { windowWidth > 550 && 
         <button 
           className='btn_nav'
           onClick={() => setIsMoreOpen(!isMoreOpen)}
@@ -87,7 +87,7 @@ export default function Nav() {
         </button>}
 
          {/* Large screen nav links */}
-        { windowWidth > 560 && 
+        { windowWidth > 550 && 
         <div className={`nav_menu_more ${isMoreOpen ? 'show' : ''}`}>
           {
             topics.slice(5,).map((item) => (

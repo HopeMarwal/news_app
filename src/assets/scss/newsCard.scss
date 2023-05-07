@@ -2,6 +2,12 @@
 
 .news-card_wrapper {
   flex-basis: 32%;
+  @include respond-to('small') {
+    flex-basis: 49%;
+  }
+  @include respond-to('x-small') {
+    flex-basis: 100%;
+  }
   margin-bottom: 10px;
   .news-card {
     display: flex;

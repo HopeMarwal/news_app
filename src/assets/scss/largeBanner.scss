@@ -17,6 +17,7 @@
   }
   img {
     width: 50%;
+    object-fit: cover;
   }
   .large_banner-body-info {
     padding: 10px 10px 10px 30px;
@@ -28,6 +29,12 @@
     p {
       transition: all 0.3s linear;
       font-size: 2rem;
+      @include respond-to('small') {
+        font-size: 1.5rem;
+      }
+      @include respond-to('x-small') {
+        font-size: 1.2rem;
+      }
     }
   }
   .news_category {

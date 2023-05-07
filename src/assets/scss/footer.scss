@@ -36,10 +36,21 @@
   }
   .footer_menu {
     display: flex;
+    flex-wrap: wrap;
     gap: 30px;
     padding: 20px 0;
+    @include respond-to('small') {
+      gap: 15px;
+    }
     p {
       font-size: 1.2rem;
+      width: fit-content;
+      @include respond-to('small') {
+        font-size: 1.1rem;
+      }
+      @include respond-to('x-small') {
+        font-size: 1rem;
+      }
     }
     
   }
@@ -47,6 +58,7 @@
     display: flex;
     align-items: center;
     gap: 20px;
+    
     .logo {
       margin-right: 0;
     }

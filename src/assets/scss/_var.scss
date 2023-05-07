@@ -13,10 +13,8 @@ $order-clr: #4282FF;
 
 
 $breakpoints: (
-  'x-small': 560px,
-  'small':  767px,
-  'medium': 992px,
-  'large':  1200px
+  'x-small': 550px,
+  'small':  650px
 ) !default;
 
 @mixin respond-to($breakpoint) {

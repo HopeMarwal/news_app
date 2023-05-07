@@ -14,10 +14,16 @@
     background-color: #fff;
     padding: 20px 40px;
     justify-content: center;
-    gap: 0;
+    gap: 0 !important;
     a {
       border-bottom: 1px solid $gray-border;
       width: 50%;
+      @include respond-to('small') {
+       width: 100%;
+      }
+      &:nth-child(10) {
+        border: none;
+      }
       &:hover, &:active {
         span {
           color: $main-clr;
@@ -27,35 +33,37 @@
         }
         
       }
-      &:nth-child(2) {
-        order: 2;
+      @media screen and (min-width: 651px) {
+        &:nth-child(2) {
+          order: 2;
+        }
+        &:nth-child(3) {
+          order: 4;
+        }
+        &:nth-child(4) {
+          order: 6;
+        }
+        &:nth-child(5) {
+          order: 8;
+          border: none;
+        }
+        &:nth-child(6) {
+          order: 1;
+        }
+        &:nth-child(7) {
+          order: 3;
+        }
+        &:nth-child(8) {
+          order: 5;
+        }
+        &:nth-child(9) {
+          order: 7;
+        }
+        &:nth-child(10) {
+          order: 9;
+        }
       }
-      &:nth-child(3) {
-        order: 4;
-      }
-      &:nth-child(4) {
-        order: 6;
-      }
-      &:nth-child(5) {
-        order: 8;
-        border: none;
-      }
-      &:nth-child(6) {
-        order: 1;
-      }
-      &:nth-child(7) {
-        order: 3;
-      }
-      &:nth-child(8) {
-        order: 5;
-      }
-      &:nth-child(9) {
-        order: 7;
-      }
-      &:nth-child(10) {
-        order: 9;
-        border: none;
-      }
+
     }
   }
   .container_item {
@@ -74,7 +82,7 @@
     }
     p {
       transition: all 0.3s linear;
-      width: 85%;
+      width: 80%;
     }
   }
 }
