@@ -9,6 +9,7 @@ import NewsDetail from './pages/NewsDetail'
 import NewsCategory from "./pages/NewsCategory";
 //Style
 import './assets/scss/main.scss';
+import Currency from "./pages/Currency";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Heading />
       <Nav />
       <Routes>
+        <Route path="/currency" element={ <Currency />} />
         <Route path='/' element={ <Main />} />
         <Route path='/:category' element={ <NewsCategory  /> } />
         <Route path='/:category/:id' element={ <NewsDetail />} />
