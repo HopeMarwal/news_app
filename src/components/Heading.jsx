@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import { currencyOptions } from '../utils/fetchData';
 
 
-export default function Heading({ city, location}) {
+export default function Heading() {
 
   const [currencyData, setCurrencyData] = useState(null)
 
@@ -30,7 +30,7 @@ export default function Heading({ city, location}) {
     <header>
       <div className='header_content'>
 
-        <p className='logo'>ne<span>w</span>s</p>
+        <Link to='/' className='logo'>ne<span>w</span>s</Link>
 
         <Link className='widget currency'>
           <img src={GB} alt='GB_flag' />
