@@ -1,22 +1,22 @@
 import React from 'react';
 import '../assets/scss/footer.scss';
 //Icons
-import { BsFacebook, BsTwitter, BsYoutube } from 'react-icons/bs'
+import { Icon } from './Icon.tsx';
 
 const social_media = [
   {
     title: 'Facebook',
-    icon: <BsFacebook className='icon fb'/>,
+    icon: <Icon nameIcon='BsFacebook' propsIcon={{className: 'icon fb'}}/>,
     link: 'https://www.facebook.com/theguardian'
   },
   {
     title: 'Twitter',
-    icon: <BsTwitter className='icon tw'/>,
+    icon: <Icon nameIcon='BsTwitter' propsIcon={{className: 'icon tw'}} />,
     link: 'https://twitter.com/guardian'
   },
   {
     title: 'Youtube',
-    icon: <BsYoutube className='icon ytb'/>,
+    icon: <Icon nameIcon='BsYoutube' propsIcon={{className: 'icon ytb'}} />,
     link: 'https://www.youtube.com/@guardiannews'
   },
 ]

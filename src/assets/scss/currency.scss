@@ -88,6 +88,10 @@
     padding: 10px;
     border-radius: 5px;
     gap: 10px;
+    img {
+      width: 30px;
+      height: 20px;
+    }
     @include respond-to('x-small') {
       width: 100%;
       justify-content: center;

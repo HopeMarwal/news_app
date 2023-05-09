@@ -32,7 +32,7 @@ export default function Heading() {
 
         <Link to='/' className='logo'>ne<span>w</span>s</Link>
 
-        <Link to='/currency' className='widget currency'>
+        <Link to='/currency' className='widget'>
           <img src={GB} alt='GB_flag' />
           <span>1 GBP = {currencyData?.USD.toFixed(2)} USD</span>
           <img src={US} alt='US_flag' />

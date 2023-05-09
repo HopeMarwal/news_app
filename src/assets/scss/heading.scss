@@ -50,30 +50,17 @@ header {
   font-weight: 700;
   font-size: 20px;
   color: $second-clr;
-  cursor: pointer;
-  &.currency {
-    @include respond-to('x-small') {
-      margin-right: 50px;
-    }
-  }
-  &.weather {
-    @include respond-to('x-small') {
-      margin-right: 50px;
-    }
-  }
-  .city {
-    font-size: 13px;
-    @include respond-to('x-small') {
-      display: none;
-    }
+  cursor: pointer; 
+  @include respond-to('x-small') {
+    margin-right: 50px;
   }
   .currency_symbol {
     opacity: 0.75;
   }
   img {
-    max-width: 25px;
+    width: 25px;
     @include respond-to('x-small') {
-     max-width: 20px;
+     width: 20px;
     }
   }
   @include respond-to('x-small') {

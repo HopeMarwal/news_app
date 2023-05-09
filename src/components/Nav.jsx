@@ -4,12 +4,11 @@ import { useEffect, useState } from 'react';
 import '../assets/scss/nav.scss';
 //Router
 import { NavLink} from 'react-router-dom';
-//Icon
-import { VscChevronDown } from 'react-icons/vsc';
-import { RxHamburgerMenu } from 'react-icons/rx'
-import { AiOutlineClose } from 'react-icons/ai'
 //Context
 import { useNews } from '../context/NewsContext';
+//Icon
+import { Icon } from './Icon.tsx';
+
 
 const topics = ['world', 'politics', 'science', 'business', 'travel', 'technology', 'uk-news', 'education', 'money', 'music', 'sport', 'fashion', 'society', 'weather', 'food', 'games', 'environment']
 
@@ -47,8 +46,9 @@ export default function Nav() {
         <button
           onClick={() => {setIsMenuOpen(!isMenuOpen)}}
           className='btn_burger'
+          aria-label="Close and Open menu Button"
         >
-          { isMenuOpen ? <AiOutlineClose /> : <RxHamburgerMenu /> }
+          { isMenuOpen ? <Icon nameIcon='AiOutlineClose' /> : <Icon nameIcon='RxHamburgerMenu' /> }
         </button>
       }
       
@@ -83,7 +83,7 @@ export default function Nav() {
           className='btn_nav'
           onClick={() => setIsMoreOpen(!isMoreOpen)}
         >
-          More <VscChevronDown className={isMoreOpen ? 'open' : 'close'}/>
+          More <Icon nameIcon='VscChevronDown' className={isMoreOpen ? 'open' : 'close'}/>
         </button>}
 
          {/* Large screen nav links */}

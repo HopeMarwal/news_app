@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 //Context
-import parse, { attributesToProps } from 'html-react-parser';
+import parse from 'html-react-parser';
 //style
 import '../assets/scss/detail.scss'
 //Router

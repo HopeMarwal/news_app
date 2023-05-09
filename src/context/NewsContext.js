@@ -31,7 +31,7 @@ export const NewsProvider = ({ children }) => {
 
   //Fetch data func
   const fetchTestNews = async (token, pageSize, section) => {
-    await axios.request({...newsOptions, params: {...newsOptions.params, 'page-size': pageSize, section: section}}, {cancelToken: token}).then(function (response) {
+    await axios.request({...newsOptions, cancelToken: token, params: {...newsOptions.params, 'page-size': pageSize, section: section}}).then(function (response) {
       if(pageSize === 3) {
         setSportNews(response.data.response.results)
       } else if(pageSize === 2) {
@@ -40,7 +40,10 @@ export const NewsProvider = ({ children }) => {
         setDataNews(response.data.response.results)
       }
     }).catch(function (error) {
-      console.error(error);
+      if(error.name === 'CanceledError') {
+        console.log(error.message)
+      }
+      
     });
   }
 

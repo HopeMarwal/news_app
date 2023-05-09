@@ -1,7 +1,6 @@
 import React from 'react';
 import NewsCard from './NewsCard';
 
-
 export default function NewsContainer({data, title}) {
   return (
     <div className="container">
