@@ -5,7 +5,7 @@ import axios from 'axios';
 import { newsOptions } from '../utils/fetchData';
 //Components
 import LargeBanner from '../components/LargeBanner';
-import NewsCard from '../components/NewsCard';
+import NewsContainer from '../components/NewsContainer';
 //Style
 import '../assets/scss/category.scss'
 
@@ -13,6 +13,8 @@ import '../assets/scss/category.scss'
 export default function NewsCategory() {
   const { category } = useParams()
   const [dataNews, setDataNews] = useState(null)
+
+  //Fetch data news
   useEffect(() => {
     const fetchNews = async () => {
       axios.request({...newsOptions, params: {...newsOptions.params, 'page-size': 31, section: category }}).then(function (response) {
@@ -24,16 +26,11 @@ export default function NewsCategory() {
     }
     fetchNews()
   }, [category])
+
   return (
-    <div className='category'>
+    <div className='category_page'>
       {dataNews && <LargeBanner data={dataNews[0]} heading={category}/>}
-      <div className="container">
-        {dataNews &&
-          dataNews.slice(1,).map((item) => (
-            <NewsCard data={item} key={item.id} />
-          ))
-        }
-      </div>
+      {dataNews && <NewsContainer data={dataNews.slice(1,)} /> }
     </div>
   )
 }

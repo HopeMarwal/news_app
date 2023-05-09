@@ -5,11 +5,13 @@ import { BsCurrencyExchange } from 'react-icons/bs'
 //Style
 import '../assets/scss/currency.scss'
 //fetch
-import { currencyOptions } from '../utils/fetchData'
+import { currencyOptions, newsOptions } from '../utils/fetchData'
 import currencyData from '../utils/countryFlags.json'
+import axios from 'axios'
 //Components
 import ExchangeCard from '../components/ExchangeCard'
 import Result from '../components/Result'
+import NewsContainer from '../components/NewsContainer'
 
 export default function Currency() {
   //State
@@ -18,11 +20,15 @@ export default function Currency() {
   const [ exchangeTo, setExchangeTo ] = useState(null)
   const [ inputValue, setInputValue ] = useState('')
   const [isOpen, setIsOpen] = useState({from: false, to: false})
+  const [dataNews, setDataNews] = useState(null)
 
   //Effect
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
+    const source = axios.CancelToken.source()
+
+    //Fetch currency data
     const handleCurrencyRequest = async () => {
       const currencyRequest = await fetch('https://currency-converter-pro1.p.rapidapi.com/currencies', currencyOptions, {signal: signal})
       const jsonCurrencyRes = await currencyRequest.json()
@@ -54,12 +60,25 @@ export default function Currency() {
       }
       setAllCurrency(allCurrencyData)
     }
+    
+    //Fetch data news
+    const fetchNews = async () => {
+      await axios.request({...newsOptions, params: {...newsOptions.params, 'page-size': 6, section: 'money' }}, {CancelToken: source.token}).then(function (response) {
+        setDataNews(response.data.response.results)
+        
+      }).catch(function (error) {
+        console.error(error);
+      });
+    }
 
+    fetchNews()
     handleCurrencyRequest()
     return () => {
       controller.abort()
+      source.cancel()
     }
   }, [])
+
 
   //Handlers
   const handleToggleModal = (flag) => {
@@ -84,56 +103,57 @@ export default function Currency() {
   }
 
   return (
-    <div className='currency_page'>
-    
-      <h1><BsCurrencyExchange /> Currency converter</h1>
+    <div className='currency_page_wrapper'>
+      <div className='currency_page'>
+      
+        <h1><BsCurrencyExchange /> Currency converter</h1>
 
-      <div className="currency_container">
+        <div className="currency_container">
 
-        <div className="amount">
-          <span>{exchangeFrom?.symbol}</span>
-          <input
-            type='text'
-            value={inputValue}
-            placeholder='Convert value...'
-            onChange={(e) => setInputValue(e.target.value)}  
+          <div className="amount">
+            <span>{exchangeFrom?.symbol}</span>
+            <input
+              type='text'
+              value={inputValue}
+              placeholder='Convert value...'
+              onChange={(e) => setInputValue(e.target.value)}  
+            />
+          </div>
+
+          {/* From */}
+          <ExchangeCard
+            handleToggleModal={handleToggleModal} 
+            exchange={exchangeFrom}
+            isOpen={isOpen.from}
+            allCurrency={allCurrency}
+            handleClick={handleClick}
+            flag='from'
+          />
+
+          <div className="change" onClick={handleSwap}>
+            <VscArrowSwap />
+          </div>
+
+          {/* To */}
+          <ExchangeCard
+            handleToggleModal={handleToggleModal} 
+            exchange={exchangeTo}
+            isOpen={isOpen.to}
+            allCurrency={allCurrency}
+            handleClick={handleClick}
+            flag='to'
           />
         </div>
-
-        {/* From */}
-        <ExchangeCard
-          handleToggleModal={handleToggleModal} 
-          exchange={exchangeFrom}
-          isOpen={isOpen.from}
-          allCurrency={allCurrency}
-          handleClick={handleClick}
-          flag='from'
-        />
-
-        <div className="change" onClick={handleSwap}>
-          <VscArrowSwap />
-        </div>
-
-        {/* To */}
-        <ExchangeCard
-          handleToggleModal={handleToggleModal} 
-          exchange={exchangeTo}
-          isOpen={isOpen.to}
-          allCurrency={allCurrency}
-          handleClick={handleClick}
-          flag='to'
-        />
+        
+        {exchangeFrom &&
+          <Result
+            value={inputValue}
+            toValue={exchangeTo}
+            fromValue={exchangeFrom}
+          />
+        }
       </div>
-      
-
-      {exchangeFrom &&
-        <Result
-          value={inputValue}
-          toValue={exchangeTo}
-          fromValue={exchangeFrom}
-        />
-      }
-      
+      {dataNews&& <NewsContainer data={dataNews} /> }
     </div>
   )
 }

@@ -75,9 +75,7 @@
       padding: 10px;
       background-color: $gray-bg-2;
       font-family: $font-heading;
-      //float: left;
       display: inline-block;
-      //clear: left;
       margin-right: 5px;
       p {
         margin-bottom: 0 !important;
@@ -114,7 +112,7 @@
     }
     img {
       width: 100% !important;
-      object-fit: cover;
+      object-fit: contain;
     }
     figcaption {
       color: $second-clr;
