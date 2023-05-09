@@ -53,7 +53,7 @@ header {
   cursor: pointer;
   &.currency {
     @include respond-to('x-small') {
-      display: none;
+      margin-right: 50px;
     }
   }
   &.weather {

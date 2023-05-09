@@ -1,6 +1,7 @@
 import { useState, useEffect} from 'react'
 //Icons
 import { VscArrowSwap } from 'react-icons/vsc'
+import { BsCurrencyExchange } from 'react-icons/bs'
 //Style
 import '../assets/scss/currency.scss'
 //fetch
@@ -84,6 +85,8 @@ export default function Currency() {
 
   return (
     <div className='currency_page'>
+    
+      <h1><BsCurrencyExchange /> Currency converter</h1>
 
       <div className="currency_container">
 
@@ -121,6 +124,7 @@ export default function Currency() {
           flag='to'
         />
       </div>
+      
 
       {exchangeFrom &&
         <Result

@@ -7,7 +7,7 @@ export default function Result({value, toValue, fromValue}) {
 
   useEffect(() => {
     setResult(null)
-  }, [toValue.code, fromValue.code])
+  }, [toValue.code, fromValue.code, value])
 
    //handle convert Api request
    const handleConvert = async() => {

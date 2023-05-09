@@ -24,8 +24,9 @@ nav {
       position: absolute;
       border: 1px solid $gray-border;
       background-color: white;
-      width: 100vw;
+      width: 100%;
       padding: 10px;
+      z-index: 10;
       .expand {
         width: 100%;
         font-size: 14px;
