@@ -17,6 +17,11 @@
       outline: none;
       padding-left: 4px;
       width: 150px;
+      &::placeholder {
+        font-size: 0.9rem;
+        font-family: $font-main;
+        opacity: 0.8;
+      }
     }
   }
   .currency_container {

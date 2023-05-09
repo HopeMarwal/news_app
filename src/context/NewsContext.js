@@ -13,20 +13,25 @@ export const NewsProvider = ({ children }) => {
 
   //Handle Fetch News
   useEffect(() => {
+    const source = axios.CancelToken.source()
+    
     if(category === 'all') {
-      fetchTestNews(31)
+      fetchTestNews(source.token, 31)
     } else {
-      fetchTestNews(31, category)
+      fetchTestNews(source.token, 31, category)
     }
-    fetchTestNews(2, 'uk-news')
-    fetchTestNews(3, 'sport')
+    fetchTestNews(source.token, 2, 'uk-news')
+    fetchTestNews(source.token, 3, 'sport')
 
+    return () => {
+      source.cancel()
+    }
   }, [category])
 
 
   //Fetch data func
-  const fetchTestNews = async (pageSize, section) => {
-    await axios.request({...newsOptions, params: {...newsOptions.params, 'page-size': pageSize, section: section}}).then(function (response) {
+  const fetchTestNews = async (token, pageSize, section) => {
+    await axios.request({...newsOptions, params: {...newsOptions.params, 'page-size': pageSize, section: section}}, {cancelToken: token}).then(function (response) {
       if(pageSize === 3) {
         setSportNews(response.data.response.results)
       } else if(pageSize === 2) {
