@@ -7,8 +7,9 @@ import { NavLink} from 'react-router-dom';
 //Context
 import { useNews } from '../context/NewsContext';
 //Icon
-import { Icon } from './Icon.tsx';
-
+import VscChevronDown from '../assets/img/icons/VscChevronDown.svg'
+import RxHamburgerMenu from '../assets/img/icons/RxHamburgerMenu.svg'
+import AiOutlineClose from '../assets/img/icons/AiOutlineClose.svg'
 
 const topics = ['world', 'politics', 'science', 'business', 'travel', 'technology', 'uk-news', 'education', 'money', 'music', 'sport', 'fashion', 'society', 'weather', 'food', 'games', 'environment']
 
@@ -48,7 +49,9 @@ export default function Nav() {
           className='btn_burger'
           aria-label="Close and Open menu Button"
         >
-          { isMenuOpen ? <Icon nameIcon='AiOutlineClose' /> : <Icon nameIcon='RxHamburgerMenu' /> }
+          { isMenuOpen 
+            ? <img src={AiOutlineClose} alt='AiOutlineClose' /> 
+            : <img src={RxHamburgerMenu} alt='RxHamburgerMenu' /> }
         </button>
       }
       
@@ -83,7 +86,7 @@ export default function Nav() {
           className='btn_nav'
           onClick={() => setIsMoreOpen(!isMoreOpen)}
         >
-          More <Icon nameIcon='VscChevronDown' className={isMoreOpen ? 'open' : 'close'}/>
+          More <img src={VscChevronDown} alt='VscChevronDown' className={isMoreOpen ? 'open' : 'close'}/>
         </button>}
 
          {/* Large screen nav links */}

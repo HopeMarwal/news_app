@@ -1,24 +1,30 @@
-import { useState, useEffect, lazy, Suspense} from 'react'
+import { useState, useEffect} from 'react'
+//Lazy load
+import loadable from '@loadable/component'
 //Icons
-// import { VscArrowSwap } from 'react-icons/vsc'
-// import { BsCurrencyExchange } from 'react-icons/bs'
-import { Icon } from '../components/Icon.tsx'
+import BsCurrencyExchange from '../assets/img/icons/BsCurrencyExchange.svg'
+import VscArrowSwap from '../assets/img/icons/VscArrowSwap.svg'
 //Style
 import '../assets/scss/currency.scss'
 //fetch
 import { currencyOptions, newsOptions } from '../utils/fetchData'
 import currencyData from '../utils/countryFlags.json'
 import axios from 'axios'
+//Spinner
+import LoadingSpinner from '../components/Spinner.jsx'
+
+
+const loader = <LoadingSpinner />
 
 //Components
-const ExchangeCard = lazy(() => import('../components/ExchangeCard')) 
-const Result = lazy(() => import('../components/Result'))
-const NewsContainer = lazy(() => import('../components/NewsContainer'))
+const ExchangeCard = loadable(() => import('../components/ExchangeCard')) 
+const Result = loadable(() => import('../components/Result'))
+const NewsContainer = loadable(() => import('../components/NewsContainer'), { fallback: loader})
 
 export default function Currency() {
   //State
   const [ allCurrency, setAllCurrency ] = useState([])
-  const [dataNews, setDataNews] = useState(null)
+  const [ dataNews, setDataNews ] = useState(null)
 
   const [ exchangeFrom, setExchangeFrom ] = useState(null)
   const [ exchangeTo, setExchangeTo ] = useState(null)
@@ -48,7 +54,6 @@ export default function Currency() {
       source.cancel()
     }
   }, [])
-
 
   useEffect(() => {
     const controller = new AbortController();
@@ -122,16 +127,14 @@ export default function Currency() {
     setExchangeTo(newTo)
   }
 
-  
-  const loader = () => <p style={{maxWidth: '750px', margin: '20px auto'}}>Loading data...</p>
-  
   return (
-    <Suspense fallback={loader()} >
       <div className='currency_page_wrapper'>
+        
         <div className='currency_page'>
         
-          <h1><Icon nameIcon='BsCurrencyExchange' /> Currency converter</h1>
+          <h1><img src={BsCurrencyExchange} alt='BsCurrencyExchange' /> Currency converter</h1>
 
+          {allCurrency.length > 0 ? 
           <div className="currency_container">
 
             <div className="amount">
@@ -155,7 +158,7 @@ export default function Currency() {
             />
 
             <div className="change" onClick={handleSwap}>
-              <Icon nameIcon='VscArrowSwap' />
+              <img src={VscArrowSwap} alt='VscArrowSwap' />
             </div>
 
             {/* To */}
@@ -168,6 +171,7 @@ export default function Currency() {
               flag='to'
             />
           </div>
+          : <LoadingSpinner />}
           
           {exchangeFrom &&
             <Result
@@ -177,9 +181,8 @@ export default function Currency() {
             />
           }
         </div>
-        {dataNews&& <NewsContainer data={dataNews} /> }
+        {dataNews && <NewsContainer data={dataNews} />}
       </div>
-    </Suspense>
 
   )
 }

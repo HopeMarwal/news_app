@@ -1,6 +1,7 @@
 import DropdownCurrency from './DropdownCurrency'
 //Icons
-import { Icon } from './Icon.tsx'
+import VscChevronDown from '../assets/img/icons/VscChevronDown.svg'
+import AiOutlineClose from '../assets/img/icons/AiOutlineClose.svg'
 
 export default function ExchangeCard({handleToggleModal, exchange, isOpen, allCurrency, handleClick, flag}) {
   return (
@@ -8,7 +9,10 @@ export default function ExchangeCard({handleToggleModal, exchange, isOpen, allCu
           <img src={`data:image/png;base64,${exchange?.flag}`}  alt={exchange?.name}/>
           <p> {exchange?.code} - <span>{exchange?.name}</span></p>
           {/* Make cond */}
-          {isOpen ? <Icon nameIcon='AiOutlineClose' /> : <Icon nameIcon='VscChevronDown' />}
+          {isOpen 
+            ? <img src={AiOutlineClose} alt='close_dropdown' /> 
+            : <img src={VscChevronDown} alt='open_dropdown' />
+          }
           
           {/* Dropdown menu */}
           <DropdownCurrency

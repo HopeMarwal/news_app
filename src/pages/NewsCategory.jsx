@@ -3,14 +3,15 @@ import { useParams } from 'react-router-dom';
 //API
 import axios from 'axios';
 import { newsOptions } from '../utils/fetchData';
-//Components
-//import LargeBanner from '../components/LargeBanner';
-//import NewsContainer from '../components/NewsContainer';
 //Style
 import '../assets/scss/category.scss'
-
-const LargeBanner = lazy(() => import('../components/LargeBanner')) 
-const NewsContainer = lazy(() => import('../components/NewsContainer')) 
+//Lazy load
+import loadable from '@loadable/component'
+//Spinner
+import LoadingSpinner from '../components/Spinner.jsx'
+//Components
+const LargeBanner = loadable(() => import('../components/LargeBanner'), { fallback: <LoadingSpinner /> }) 
+const NewsContainer = loadable(() => import('../components/NewsContainer'), { fallback: <LoadingSpinner /> }) 
 
 export default function NewsCategory() {
   const { category } = useParams()
@@ -43,10 +44,8 @@ export default function NewsCategory() {
   const loader = () => <p style={{maxWidth: '750px', margin: '20px auto'}}>Loading data...</p>
   return (
     <div className='category_page'>
-      <Suspense fallback={loader()}>
-        {dataNews && <LargeBanner data={dataNews[0]} heading={category}/>}
-        {dataNews && <NewsContainer data={dataNews.slice(1,)} /> }
-      </Suspense>
+      {dataNews && <LargeBanner data={dataNews[0]} heading={category}/>}
+      {dataNews && <NewsContainer data={dataNews.slice(1,)} /> }
     </div>
   )
 }
