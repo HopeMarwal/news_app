@@ -10,23 +10,26 @@ import { useNews } from '../context/NewsContext'
 import LoadingSpinner from '../components/Spinner.jsx'
 
 //Components
-const LargeBanner = loadable(() => import('../components/LargeBanner')) 
+const NewsBannerCard = loadable(() => import('../components/NewsBannerCard')) 
 const NewsContainer = loadable(() => import('../components/NewsContainer'), {fallback: <LoadingSpinner />}) 
 
 export default function Main() {
   const {dataNews, bannerNews, sportNews} = useNews()
+  if(!dataNews && !bannerNews && !sportNews) {
+    return <LoadingSpinner />
+  }
   return (
     <div className='main-page'>
       {/* Large Banner */}
-      { dataNews && <LargeBanner data={dataNews[0]} heading='new today' /> }
+      { dataNews && <NewsBannerCard data={dataNews[0]} heading='new today' isBanner /> }
 
       {/* 9 most relevance all news */}
       { dataNews &&  <NewsContainer data={dataNews.slice(1, 10)} /> }
       
       
       {/* 2 Large banner UK news */}
-      { bannerNews && <LargeBanner data={bannerNews[0]} heading='UK News' /> }
-      { bannerNews && <LargeBanner data={bannerNews[1]} heading='' /> }
+      { bannerNews && <NewsBannerCard data={bannerNews[0]} heading='UK News' isBanner /> }
+      { bannerNews && <NewsBannerCard data={bannerNews[1]} heading='' isBanner /> }
 
       {/* 3 Sport news */}
       {sportNews&& <NewsContainer data={sportNews} title='Sport' />}

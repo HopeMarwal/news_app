@@ -8,6 +8,8 @@ import '../assets/scss/detail.scss'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { newsOptions } from '../utils/fetchData';
+//Spinner
+import LoadingSpinner from '../components/Spinner';
 
 export default function NewsDetail() {
   //State
@@ -40,16 +42,15 @@ export default function NewsDetail() {
   const options = {
     replace: domNode => {
       if(domNode.name && domNode.name === 'a' && domNode.parent.name === 'figure') {
-        console.dir(domNode)
         const domProps = domNode.attribs.href
-        return <iframe src={domProps} />
+        return <iframe src={domProps} title={domProps} />
       }
     }
   }
   
 
   if (!newsDetail) {
-    return <div className='news_detail'><span>Loading...</span></div>
+    return <LoadingSpinner />
   }
   return (
     <div className='news_detail'>

@@ -59,8 +59,10 @@ header {
   }
   img {
     width: 25px;
+    height: 17px;
     @include respond-to('x-small') {
      width: 20px;
+     height: 13px;
     }
   }
   @include respond-to('x-small') {

@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom'
-//Style
+import '../assets/scss/largeBanner.scss';
 import '../assets/scss/newsCard.scss'
+//Router
+import { Link } from 'react-router-dom';
 //React
 import { useState, useEffect } from 'react';
 //Spinner
@@ -9,14 +10,9 @@ import LoadingSpinner from './Spinner';
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
-
-export default function NewsCard({ data }) {
+export default function NewsBannerCard({ data, heading, isBanner }) {
   const id = data.id.replaceAll('/', '_')
   const [ isLoading, setIsLoading ] = useState(true)
-  // const headers = {
-  //   'Access-Control-Allow-Origin': '*',
-  //   'Access-Control-Allow-Credentials': 'true'
-  // }
 
   useEffect(() => {
     const imgSrc = data?.fields.thumbnail
@@ -31,44 +27,37 @@ export default function NewsCard({ data }) {
       await promise
       setIsLoading(false)
     }
+
     cashImg(imgSrc)
-
-    // const imgFile = async (url) => {
-    //   const res = await fetch(url, {headers});
-    //   const blob = await res.blob(url);
-    //   console.log(blob)
-
-    // }
-
-    // imgFile(img)
-    
-    
   },[])
 
   if(isLoading) {
     return <LoadingSpinner />
   }
+
   return (
-    <Link to={`/${data.sectionId}/${id}`} className='news-card_wrapper'>
-      <div className='news-card'>
-        <div className='img'>
-          
+    <Link to={`/${data.sectionId}/${id}`} className={isBanner ? 'large_banner' : 'news-card_wrapper'}>
+      <h3>{heading}</h3>
+      <div className='card-body'>
+        <div className="img">
           <LazyLoadImage
             src={data?.fields.thumbnail}
-            height={150}
+            height={'100%'}
             alt={data.webTitle}
             width={'100%'}
-            effect='blur'
-            
+            effect='blur'   
           />
         </div>
         
-        <div className="news-card_info">
-          <p className='category'>{data.sectionName}</p>
-          <p className='title'>{data.webTitle.slice(0,60)}...</p>
+
+        <div className='card-body-info'>
+          <div className='category'>
+            <span>{data?.sectionName}</span>
+          </div>
+          <p className='title'>{data?.webTitle.slice(0, 60)}...</p>
         </div>
+
       </div>
     </Link>
-   
   )
 }

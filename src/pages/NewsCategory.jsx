@@ -10,7 +10,7 @@ import loadable from '@loadable/component'
 //Spinner
 import LoadingSpinner from '../components/Spinner.jsx'
 //Components
-const LargeBanner = loadable(() => import('../components/LargeBanner'), { fallback: <LoadingSpinner /> }) 
+const NewsBannerCard = loadable(() => import('../components/NewsBannerCard')) 
 const NewsContainer = loadable(() => import('../components/NewsContainer'), { fallback: <LoadingSpinner /> }) 
 
 export default function NewsCategory() {
@@ -41,10 +41,9 @@ export default function NewsCategory() {
     }
   }, [category])
 
-  const loader = () => <p style={{maxWidth: '750px', margin: '20px auto'}}>Loading data...</p>
   return (
     <div className='category_page'>
-      {dataNews && <LargeBanner data={dataNews[0]} heading={category}/>}
+      {dataNews && <NewsBannerCard data={dataNews[0]} heading={category} isBanner />}
       {dataNews && <NewsContainer data={dataNews.slice(1,)} /> }
     </div>
   )
