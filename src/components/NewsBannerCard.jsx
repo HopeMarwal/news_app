@@ -9,13 +9,14 @@ import LoadingSpinner from './Spinner';
 //Img lazy load
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import img_placeholder from '../assets/img/img_placeholder.png'
 
 export default function NewsBannerCard({ data, heading, isBanner }) {
   const id = data.id.replaceAll('/', '_')
+  const isImgField = data?.hasOwnProperty('fields')
   const [ isLoading, setIsLoading ] = useState(true)
 
   useEffect(() => {
-    const imgSrc = data?.fields.thumbnail
     const cashImg = async(src) => {
       const promise = await new Promise((resolve, reject) => {
           const img = new Image()
@@ -28,20 +29,22 @@ export default function NewsBannerCard({ data, heading, isBanner }) {
       setIsLoading(false)
     }
 
-    cashImg(imgSrc)
+    if(isImgField) {
+      cashImg(data?.fields.thumbnail)
+    }
+    
   },[])
 
   if(isLoading) {
     return <LoadingSpinner />
-  }
-
+  } 
   return (
     <Link to={`/${data.sectionId}/${id}`} className={isBanner ? 'large_banner' : 'news-card_wrapper'}>
       <h3>{heading}</h3>
       <div className='card-body'>
         <div className="img">
           <LazyLoadImage
-            src={data?.fields.thumbnail}
+            src={isImgField ? data?.fields.thumbnail : img_placeholder}
             height={'100%'}
             alt={data.webTitle}
             width={'100%'}

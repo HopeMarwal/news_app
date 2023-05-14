@@ -15,6 +15,7 @@ const NewsContainer = loadable(() => import('../components/NewsContainer'), {fal
 
 export default function Main() {
   const {dataNews, bannerNews, sportNews} = useNews()
+
   if(!dataNews && !bannerNews && !sportNews) {
     return <LoadingSpinner />
   }
